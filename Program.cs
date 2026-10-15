@@ -10,6 +10,7 @@ internal class Program
         ShowNames();
         ShowLines();
         ShowCities();
+        ShowCityConstructor();
         ShowFractions();
     }
 
@@ -17,192 +18,61 @@ internal class Program
     {
         Console.WriteLine("ЗАДАНИЕ 1.1 — ТОЧКИ");
 
-        double x;
-        double y;
+        Point p1 = ReadPoint("Первая точка");
+        Point p2 = ReadPoint("Вторая точка");
+        Point p3 = ReadPoint("Третья точка");
 
-        Console.Write("X первой точки: ");
-        while (!double.TryParse(Console.ReadLine(), out x))
-        {
-            Console.Write("Ошибка! Введите число: ");
-        }
-
-        Console.Write("Y первой точки: ");
-        while (!double.TryParse(Console.ReadLine(), out y))
-        {
-            Console.Write("Ошибка! Введите число: ");
-        }
-
-        Point p1 = new Point(x, y);
-
-        Console.Write("X второй точки: ");
-        while (!double.TryParse(Console.ReadLine(), out x))
-        {
-            Console.Write("Ошибка! Введите число: ");
-        }
-
-        Console.Write("Y второй точки: ");
-        while (!double.TryParse(Console.ReadLine(), out y))
-        {
-            Console.Write("Ошибка! Введите число: ");
-        }
-
-        Point p2 = new Point(x, y);
-
-        Console.Write("X третьей точки: ");
-        while (!double.TryParse(Console.ReadLine(), out x))
-        {
-            Console.Write("Ошибка! Введите число: ");
-        }
-
-        Console.Write("Y третьей точки: ");
-        while (!double.TryParse(Console.ReadLine(), out y))
-        {
-            Console.Write("Ошибка! Введите число: ");
-        }
-
-        Point p3 = new Point(x, y);
-
-        Console.WriteLine(p1);
-        Console.WriteLine(p2);
-        Console.WriteLine(p3);
+        Console.WriteLine("Первая: " + p1);
+        Console.WriteLine("Вторая: " + p2);
+        Console.WriteLine("Третья: " + p3);
+        Console.WriteLine();
     }
 
     static void ShowNames()
     {
-        Console.WriteLine("\nЗАДАНИЕ 1.3 — ИМЕНА");
+        Console.WriteLine("ЗАДАНИЕ 1.3 — ИМЕНА");
 
         string first;
         string surname;
         string patronymic;
 
-        Console.Write("Имя первого человека: ");
-        first = Console.ReadLine();
+        first = ReadText("Имя Клеопатры");
+        Name n1 = new Name("", first, "");
 
-        while (first == null || first.Trim() == "")
-        {
-            Console.Write("Ошибка! Введите имя: ");
-            first = Console.ReadLine();
-        }
-
-        Name n1 = new Name(first);
-
-        Console.Write("Фамилия второго человека: ");
-        surname = Console.ReadLine();
-
-        while (surname == null || surname.Trim() == "")
-        {
-            Console.Write("Ошибка! Введите фамилию: ");
-            surname = Console.ReadLine();
-        }
-
-        Console.Write("Имя второго человека: ");
-        first = Console.ReadLine();
-
-        while (first == null || first.Trim() == "")
-        {
-            Console.Write("Ошибка! Введите имя: ");
-            first = Console.ReadLine();
-        }
-
-        Console.Write("Отчество второго человека: ");
-        patronymic = Console.ReadLine();
-
-        while (patronymic == null || patronymic.Trim() == "")
-        {
-            Console.Write("Ошибка! Введите отчество: ");
-            patronymic = Console.ReadLine();
-        }
+        surname = ReadText("Фамилия Пушкина");
+        first = ReadText("Имя Пушкина");
+        patronymic = ReadText("Отчество Пушкина");
 
         Name n2 = new Name(surname, first, patronymic);
 
-        Console.Write("Фамилия третьего человека: ");
-        surname = Console.ReadLine();
+        surname = ReadText("Фамилия Маяковского");
+        first = ReadText("Имя Маяковского");
 
-        while (surname == null || surname.Trim() == "")
-        {
-            Console.Write("Ошибка! Введите фамилию: ");
-            surname = Console.ReadLine();
-        }
-
-        Console.Write("Имя третьего человека: ");
-        first = Console.ReadLine();
-
-        while (first == null || first.Trim() == "")
-        {
-            Console.Write("Ошибка! Введите имя: ");
-            first = Console.ReadLine();
-        }
-
-        Name n3 = new Name(surname, first);
+        Name n3 = new Name(surname, first, "");
 
         Console.WriteLine(n1);
         Console.WriteLine(n2);
         Console.WriteLine(n3);
+        Console.WriteLine();
     }
 
     static void ShowLines()
     {
-        Console.WriteLine("\nЗАДАНИЕ 2.1 — ЛИНИИ");
+        Console.WriteLine("ЗАДАНИЕ 2.1 — ЛИНИИ");
 
-        double x;
-        double y;
+        Console.WriteLine("Введите начало линии 1.");
+        Point p1 = ReadPoint("Начальная точка");
 
-        Console.Write("X начала линии 1: ");
-        while (!double.TryParse(Console.ReadLine(), out x))
-        {
-            Console.Write("Ошибка! Введите число: ");
-        }
+        Console.WriteLine("Введите конец линии 1.");
+        Point p2 = ReadPoint("Конечная точка");
 
-        Console.Write("Y начала линии 1: ");
-        while (!double.TryParse(Console.ReadLine(), out y))
-        {
-            Console.Write("Ошибка! Введите число: ");
-        }
+        Console.WriteLine("Введите начало линии 2.");
+        Point p3 = ReadPoint("Начальная точка");
 
-        Point p1 = new Point(x, y);
+        Console.WriteLine("Введите конец линии 2.");
+        Point p4 = ReadPoint("Конечная точка");
 
-        Console.Write("X конца линии 1: ");
-        while (!double.TryParse(Console.ReadLine(), out x))
-        {
-            Console.Write("Ошибка! Введите число: ");
-        }
-
-        Console.Write("Y конца линии 1: ");
-        while (!double.TryParse(Console.ReadLine(), out y))
-        {
-            Console.Write("Ошибка! Введите число: ");
-        }
-
-        Point p2 = new Point(x, y);
         Line l1 = new Line(p1, p2);
-
-        Console.Write("X начала линии 2: ");
-        while (!double.TryParse(Console.ReadLine(), out x))
-        {
-            Console.Write("Ошибка! Введите число: ");
-        }
-
-        Console.Write("Y начала линии 2: ");
-        while (!double.TryParse(Console.ReadLine(), out y))
-        {
-            Console.Write("Ошибка! Введите число: ");
-        }
-
-        Point p3 = new Point(x, y);
-
-        Console.Write("X конца линии 2: ");
-        while (!double.TryParse(Console.ReadLine(), out x))
-        {
-            Console.Write("Ошибка! Введите число: ");
-        }
-
-        Console.Write("Y конца линии 2: ");
-        while (!double.TryParse(Console.ReadLine(), out y))
-        {
-            Console.Write("Ошибка! Введите число: ");
-        }
-
-        Point p4 = new Point(x, y);
         Line l2 = new Line(p3, p4);
         Line l3 = new Line(l1.Start, l2.End);
 
@@ -211,196 +81,159 @@ internal class Program
         Console.WriteLine(l2);
         Console.WriteLine(l3);
 
-        l1.Start.X = ReadLineCoordinate(
-            "Новое X начала линии 1: ");
-        l1.Start.Y = ReadLineCoordinate(
-            "Новое Y начала линии 1: ");
-        l2.End.X = ReadLineCoordinate(
-            "Новое X конца линии 2: ");
+        Console.WriteLine("Изменяем координаты точек.");
 
-        Console.WriteLine("После изменения координат:");
+        l1.Start.X = ReadNumber("Новое X начала линии 1");
+        l1.Start.Y = ReadNumber("Новое Y начала линии 1");
+        l2.End.X = ReadNumber("Новое X конца линии 2");
+        l2.End.Y = ReadNumber("Новое Y конца линии 2");
+
+        Console.WriteLine("После изменений:");
         Console.WriteLine(l1);
         Console.WriteLine(l2);
         Console.WriteLine(l3);
 
-        x = ReadLineCoordinate("X новой точки начала: ");
-        y = ReadLineCoordinate("Y новой точки начала: ");
+        Console.WriteLine("Заменяем начало линии 1.");
+
+        double x = ReadNumber("Новый X");
+        double y = ReadNumber("Новый Y");
 
         l1.Start = new Point(x, y);
 
-        Console.WriteLine("После замены точки:");
-        Console.WriteLine(l1);
-        Console.WriteLine(l3);
-    }
-
-    static double ReadLineCoordinate(string message)
-    {
-        double value;
-
-        Console.Write(message);
-        while (!double.TryParse(Console.ReadLine(), out value))
-        {
-            Console.Write("Ошибка! Введите число: ");
-        }
-
-        return value;
+        Console.WriteLine("Линия 1: " + l1);
+        Console.WriteLine("Линия 3: " + l3);
+        Console.WriteLine();
     }
 
     static void ShowCities()
     {
-        Console.WriteLine("\nЗАДАНИЕ 3.3 И 4.8 — ГОРОДА");
+        Console.WriteLine("ЗАДАНИЕ 3.3 — ГОРОДА");
 
-        City[] cities = new City[6];
-        string[] names = { "A", "B", "C", "D", "E", "F" };
+        City a = new City("A");
+        City b = new City("B");
+        City c = new City("C");
+        City d = new City("D");
+        City e = new City("E");
+        City f = new City("F");
 
-        for (int i = 0; i < cities.Length; i++)
+        a.SetPaths(
+            new City[] { f, d },
+            new int[] { 1, 6 }
+        );
+
+        b.SetPaths(
+            new City[] { a, c },
+            new int[] { 5, 3 }
+        );
+
+        c.SetPaths(
+            new City[] { d },
+            new int[] { 4 }
+        );
+
+        d.SetPaths(
+            new City[0],
+            new int[0]
+        );
+
+        e.SetPaths(
+            new City[] { d },
+            new int[] { 2 }
+        );
+
+        f.SetPaths(
+            new City[] { b, e },
+            new int[] { 1, 2 }
+        );
+
+        Console.WriteLine(a);
+        Console.WriteLine(b);
+        Console.WriteLine(c);
+        Console.WriteLine(d);
+        Console.WriteLine(e);
+        Console.WriteLine(f);
+        Console.WriteLine();
+    }
+
+    static void ShowCityConstructor()
+    {
+        Console.WriteLine("ЗАДАНИЕ 4.8 — СОЗДАНИЕ ГОРОДА");
+
+        string name = ReadText("Название нового города");
+        int count = ReadInteger("Количество путей", 0, 5);
+
+        City[] destinations = new City[count];
+        int[] costs = new int[count];
+
+        for (int i = 0; i < count; i++)
         {
-            cities[i] = new City(names[i]);
+            string destinationName =
+                ReadText("Название города назначения");
+
+            destinations[i] = new City(destinationName);
+
+            costs[i] = ReadInteger(
+                "Стоимость пути",
+                1,
+                1000000
+            );
         }
 
-        for (int i = 0; i < cities.Length; i++)
-        {
-            Console.WriteLine("\nПути из " + names[i]);
+        City city = new City(name, destinations, costs);
 
-            int count;
-            Console.Write("Количество путей (0-5): ");
-
-            while (!int.TryParse(Console.ReadLine(), out count)
-                || count < 0 || count > 5)
-            {
-                Console.Write("Введите число от 0 до 5: ");
-            }
-
-            City[] destinations = new City[count];
-            int[] costs = new int[count];
-
-            for (int j = 0; j < count; j++)
-            {
-                Console.WriteLine("Города назначения:");
-
-                for (int k = 0; k < cities.Length; k++)
-                {
-                    Console.WriteLine(k + " - " + names[k]);
-                }
-
-                int index;
-                Console.Write("Индекс города: ");
-
-                while (!int.TryParse(Console.ReadLine(), out index)
-                    || index < 0 || index > 5)
-                {
-                    Console.Write("Введите индекс от 0 до 5: ");
-                }
-
-                destinations[j] = cities[index];
-
-                Console.Write("Стоимость пути: ");
-                while (!int.TryParse(
-                    Console.ReadLine(), out costs[j])
-                    || costs[j] <= 0)
-                {
-                    Console.Write(
-                        "Введите положительное число: ");
-                }
-            }
-
-            cities[i].SetPaths(destinations, costs);
-        }
-
-        Console.WriteLine("\nСписок городов:");
-
-        for (int i = 0; i < cities.Length; i++)
-        {
-            Console.WriteLine(cities[i]);
-        }
-
-        Console.WriteLine("\nВторой конструктор City.");
-
-        string extraName;
-        Console.Write("Название дополнительного города: ");
-        extraName = Console.ReadLine();
-
-        while (extraName == null || extraName.Trim() == "")
-        {
-            Console.Write("Ошибка! Введите название: ");
-            extraName = Console.ReadLine();
-        }
-
-        int destination;
-        Console.Write("Индекс города назначения (0-5): ");
-
-        while (!int.TryParse(Console.ReadLine(), out destination)
-            || destination < 0 || destination > 5)
-        {
-            Console.Write("Введите индекс от 0 до 5: ");
-        }
-
-        int cost;
-        Console.Write("Стоимость пути: ");
-
-        while (!int.TryParse(Console.ReadLine(), out cost)
-            || cost <= 0)
-        {
-            Console.Write("Введите положительное число: ");
-        }
-
-        City extra = new City(extraName);
-        extra.SetPaths(
-            new City[] { cities[destination] },
-            new int[] { cost });
-
-        Console.WriteLine(extra);
+        Console.WriteLine("Созданный город:");
+        Console.WriteLine(city);
+        Console.WriteLine();
     }
 
     static void ShowFractions()
     {
-        Console.WriteLine("\nЗАДАНИЕ 5.5 — ДРОБИ");
+        Console.WriteLine("ЗАДАНИЕ 5.5 — ДРОБИ");
 
-        int n1;
-        int d1;
-        int n2;
-        int d2;
-        int n3;
-        int d3;
+        int n1 = ReadInteger("Числитель f1", -1000000, 1000000);
+        int d1 = ReadInteger("Знаменатель f1", -1000000, 1000000);
 
-        Console.Write("Числитель первой дроби: ");
-        while (!int.TryParse(Console.ReadLine(), out n1))
+        while (d1 == 0)
         {
-            Console.Write("Ошибка! Введите целое число: ");
+            Console.WriteLine("Знаменатель не может быть нулём.");
+            d1 = ReadInteger(
+                "Введите знаменатель f1",
+                -1000000,
+                1000000
+            );
         }
 
-        Console.Write("Знаменатель первой дроби: ");
-        while (!int.TryParse(Console.ReadLine(), out d1)
-            || d1 == 0)
+        int n2 = ReadInteger("Числитель f2", -1000000, 1000000);
+        int d2 = ReadInteger("Знаменатель f2", -1000000, 1000000);
+
+        while (d2 == 0)
         {
-            Console.Write("Знаменатель не может быть нулём: ");
+            Console.WriteLine("Знаменатель не может быть нулём.");
+            d2 = ReadInteger(
+                "Введите знаменатель f2",
+                -1000000,
+                1000000
+            );
         }
 
-        Console.Write("Числитель второй дроби: ");
-        while (!int.TryParse(Console.ReadLine(), out n2))
-        {
-            Console.Write("Ошибка! Введите целое число: ");
-        }
+        int n3 = ReadInteger("Числитель f3", -1000000, 1000000);
+        int d3 = ReadInteger("Знаменатель f3", -1000000, 1000000);
 
-        Console.Write("Знаменатель второй дроби: ");
-        while (!int.TryParse(Console.ReadLine(), out d2)
-            || d2 == 0)
+        while (d3 == 0 || n3 == 0)
         {
-            Console.Write("Знаменатель не может быть нулём: ");
-        }
+            Console.WriteLine("Дробь f3 не должна быть нулём.");
 
-        Console.Write("Числитель третьей дроби: ");
-        while (!int.TryParse(Console.ReadLine(), out n3)
-            || n3 == 0)
-        {
-            Console.Write("Числитель не может быть нулём: ");
-        }
+            n3 = ReadInteger(
+                "Введите числитель f3",
+                -1000000,
+                1000000
+            );
 
-        Console.Write("Знаменатель третьей дроби: ");
-        while (!int.TryParse(Console.ReadLine(), out d3)
-            || d3 == 0)
-        {
-            Console.Write("Знаменатель не может быть нулём: ");
+            d3 = ReadInteger(
+                "Введите знаменатель f3",
+                -1000000,
+                1000000
+            );
         }
 
         Fraction f1 = new Fraction(n1, d1);
@@ -408,50 +241,129 @@ internal class Program
         Fraction f3 = new Fraction(n3, d3);
 
         Console.WriteLine(
-            f1 + " + " + f2 + " = " + f1.sum(f2));
+            f1 + " + " + f2 + " = " + f1.sum(f2)
+        );
+
         Console.WriteLine(
-            f1 + " - " + f2 + " = " + f1.minus(f2));
+            f1 + " - " + f2 + " = " + f1.minus(f2)
+        );
+
         Console.WriteLine(
-            f1 + " * " + f2 + " = " + f1.mult(f2));
+            f1 + " * " + f2 + " = " + f1.mult(f2)
+        );
 
         if (f2.Numerator != 0)
         {
             Console.WriteLine(
-                f1 + " / " + f2 + " = " + f1.div(f2));
+                f1 + " / " + f2 + " = " + f1.div(f2)
+            );
         }
         else
         {
-            Console.WriteLine("На нулевую дробь делить нельзя.");
+            Console.WriteLine("Деление на нулевую дробь нельзя.");
         }
 
-        int number;
-        Console.Write("Введите целое число: ");
-
-        while (!int.TryParse(Console.ReadLine(), out number))
-        {
-            Console.Write("Ошибка! Введите целое число: ");
-        }
+        int number = ReadInteger(
+            "Введите целое число",
+            -1000000,
+            1000000
+        );
 
         Console.WriteLine(
-            f1 + " + " + number + " = " + f1.sum(number));
+            f1 + " + " + number + " = " + f1.sum(number)
+        );
+
         Console.WriteLine(
-            f1 + " - " + number + " = " + f1.minus(number));
+            f1 + " - " + number + " = " + f1.minus(number)
+        );
+
         Console.WriteLine(
-            f1 + " * " + number + " = " + f1.mult(number));
+            f1 + " * " + number + " = " + f1.mult(number)
+        );
 
         if (number != 0)
         {
             Console.WriteLine(
-                f1 + " / " + number + " = " + f1.div(number));
+                f1 + " / " + number + " = " + f1.div(number)
+            );
         }
         else
         {
-            Console.WriteLine("На ноль делить нельзя.");
+            Console.WriteLine("Деление на ноль невозможно.");
         }
 
         Fraction result = f1.sum(f2).div(f3).minus(5);
 
         Console.WriteLine(
-            "f1.sum(f2).div(f3).minus(5) = " + result);
+            "f1.sum(f2).div(f3).minus(5) = " + result
+        );
+
+        Console.WriteLine();
+    }
+
+    static Point ReadPoint(string message)
+    {
+        Console.WriteLine(message);
+
+        double x = ReadNumber("X");
+        double y = ReadNumber("Y");
+
+        return new Point(x, y);
+    }
+
+    static double ReadNumber(string message)
+    {
+        double number;
+
+        Console.Write(message + ": ");
+
+        while (!double.TryParse(
+            Console.ReadLine(),
+            out number))
+        {
+            Console.Write("Ошибка! Введите число: ");
+        }
+
+        return number;
+    }
+
+    static int ReadInteger(
+        string message,
+        int min,
+        int max)
+    {
+        int number;
+
+        Console.Write(message + ": ");
+
+        while (!int.TryParse(
+            Console.ReadLine(),
+            out number)
+            || number < min
+            || number > max)
+        {
+            Console.Write(
+                "Введите целое число от " +
+                min + " до " + max + ": "
+            );
+        }
+
+        return number;
+    }
+
+    static string ReadText(string message)
+    {
+        string text;
+
+        Console.Write(message + ": ");
+        text = Console.ReadLine();
+
+        while (text == null || text.Trim() == "")
+        {
+            Console.Write("Поле не должно быть пустым: ");
+            text = Console.ReadLine();
+        }
+
+        return text;
     }
 }
