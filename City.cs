@@ -45,6 +45,17 @@ internal class City
         _paths = paths;
     }
 
+    public City(string name, Path[] paths, int count)
+    {
+        _name = name;
+        _paths = new Path[count];
+
+        for (int i = 0; i < count; i++)
+        {
+            _paths[i] = paths[i];
+        }
+    }
+
     public void AddPath(City city, int cost)
     {
         Path[] newPaths = new Path[_paths.Length + 1];
@@ -56,6 +67,11 @@ internal class City
 
         newPaths[_paths.Length] = new Path(city, cost);
         _paths = newPaths;
+    }
+
+    public void SetPaths(Path[] paths)
+    {
+        _paths = paths;
     }
 
     public override string ToString()
