@@ -1,21 +1,24 @@
+// Задание 1.3. Имена.
+// Создать класс имени, содержащий фамилию, имя
+// и отчество. Отсутствующие части имени не выводить.
 
 namespace Lab2;
 
 internal class Name
 {
-    private string? surname;
-    private string firstName;
-    private string? patronymic;
+    private string _surname;
+    private string _firstName;
+    private string _patronymic;
 
-    public string? Surname
+    public string Surname
     {
         get
         {
-            return surname;
+            return _surname;
         }
         set
         {
-            surname = value;
+            _surname = value;
         }
     }
 
@@ -23,38 +26,38 @@ internal class Name
     {
         get
         {
-            return firstName;
+            return _firstName;
         }
         set
         {
-            firstName = value;
+            _firstName = value;
         }
     }
 
-    public string? Patronymic
+    public string Patronymic
     {
         get
         {
-            return patronymic;
+            return _patronymic;
         }
         set
         {
-            patronymic = value;
+            _patronymic = value;
         }
     }
 
     public Name(string firstName)
     {
-        this.firstName = firstName;
-        surname = null;
-        patronymic = null;
+        _surname = "";
+        _firstName = firstName;
+        _patronymic = "";
     }
 
     public Name(string surname, string firstName)
     {
-        this.surname = surname;
-        this.firstName = firstName;
-        patronymic = null;
+        _surname = surname;
+        _firstName = firstName;
+        _patronymic = "";
     }
 
     public Name(
@@ -62,25 +65,38 @@ internal class Name
         string firstName,
         string patronymic)
     {
-        this.surname = surname;
-        this.firstName = firstName;
-        this.patronymic = patronymic;
+        _surname = surname;
+        _firstName = firstName;
+        _patronymic = patronymic;
     }
 
     public override string ToString()
     {
         string result = "";
 
-        if (!string.IsNullOrWhiteSpace(surname))
+        if (_surname != "")
         {
-            result += surname + " ";
+            result = _surname;
         }
 
-        result += firstName;
-
-        if (!string.IsNullOrWhiteSpace(patronymic))
+        if (_firstName != "")
         {
-            result += " " + patronymic;
+            if (result != "")
+            {
+                result += " ";
+            }
+
+            result += _firstName;
+        }
+
+        if (_patronymic != "")
+        {
+            if (result != "")
+            {
+                result += " ";
+            }
+
+            result += _patronymic;
         }
 
         return result;
