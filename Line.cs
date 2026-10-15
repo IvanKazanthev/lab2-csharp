@@ -1,23 +1,24 @@
-
-using System;
+// Задание 2.1. Прямая.
+// Создать класс линии, заданной начальной и конечной
+// точками. Проверить изменение координат и ссылок
+// на точки.
 
 namespace Lab2;
 
 internal class Line
 {
-    private Point start;
-    private Point end;
+    private Point _start;
+    private Point _end;
 
     public Point Start
     {
         get
         {
-            return start;
+            return _start;
         }
         set
         {
-            start = value
-                ?? throw new ArgumentNullException(nameof(value));
+            _start = value;
         }
     }
 
@@ -25,25 +26,23 @@ internal class Line
     {
         get
         {
-            return end;
+            return _end;
         }
         set
         {
-            end = value
-                ?? throw new ArgumentNullException(nameof(value));
+            _end = value;
         }
     }
 
     public Line(Point start, Point end)
     {
-        this.start = start
-            ?? throw new ArgumentNullException(nameof(start));
-        this.end = end
-            ?? throw new ArgumentNullException(nameof(end));
+        _start = start;
+        _end = end;
     }
 
     public override string ToString()
     {
-        return $"Линия от {Start} до {End}";
+        return "Линия от " + Start +
+            " до " + End;
     }
 }
