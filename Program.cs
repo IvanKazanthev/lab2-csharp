@@ -18,15 +18,16 @@ internal class Program
     {
         Console.WriteLine("ЗАДАНИЕ 1.1 — ТОЧКИ");
 
-        Point p1 = new Point(1, 2);
-        Point p2 = new Point(3, 4);
-        Point p3 = new Point(5, 6);
+        Point p1 = ReadPoint("Первая точка");
+        Point p2 = ReadPoint("Вторая точка");
+        Point p3 = ReadPoint("Третья точка");
 
-        Console.WriteLine(p1);
-        Console.WriteLine(p2);
-        Console.WriteLine(p3);
+        Console.WriteLine("Первая точка: " + p1);
+        Console.WriteLine("Вторая точка: " + p2);
+        Console.WriteLine("Третья точка: " + p3);
         Console.WriteLine();
     }
+
     static void ShowNames()
     {
         Console.WriteLine("ЗАДАНИЕ 1.3 — ИМЕНА");
@@ -45,7 +46,7 @@ internal class Program
     static Name ReadName()
     {
         string surname = ReadOptionalText("Фамилия");
-        string firstName = ReadOptionalText("Имя");
+        string firstName = ReadOptionalText("Личное имя");
         string patronymic = ReadOptionalText("Отчество");
 
         return new Name(surname, firstName, patronymic);
@@ -104,19 +105,23 @@ internal class Program
         Console.WriteLine(l2);
         Console.WriteLine(l3);
 
-        l1.Start.X = 2;
-        l1.Start.Y = 4;
-        l2.End.X = 30;
-        l2.End.Y = 10;
+        l1.Start.X = ReadNumber("Новое X начала линии 1");
+        l1.Start.Y = ReadNumber("Новое Y начала линии 1");
+        l2.End.X = ReadNumber("Новое X конца линии 2");
+        l2.End.Y = ReadNumber("Новое Y конца линии 2");
 
         Console.WriteLine("После изменения координат:");
         Console.WriteLine(l1);
         Console.WriteLine(l2);
         Console.WriteLine(l3);
 
-        l1.Start = new Point(100, 100);
+        Console.WriteLine("Заменяем начало линии 1.");
 
-        Console.WriteLine("После замены начала линии 1:");
+        double x = ReadNumber("Новый X");
+        double y = ReadNumber("Новый Y");
+
+        l1.Start = new Point(x, y);
+
         Console.WriteLine(l1);
         Console.WriteLine(l3);
         Console.WriteLine();
@@ -163,7 +168,6 @@ internal class Program
         Console.WriteLine();
     }
 
-    // Задание 4.8. Создание городов.
     static void ShowCityConstructor()
     {
         Console.WriteLine("ЗАДАНИЕ 4.8 — СОЗДАНИЕ ГОРОДА");
@@ -180,9 +184,7 @@ internal class Program
                 ReadRequiredText("Город назначения");
 
             cities[i] = new City(destination);
-
-            costs[i] = ReadInteger(
-                "Стоимость пути", 1, 1000000);
+            costs[i] = ReadInteger("Стоимость пути", 1, 1000000);
         }
 
         City city = new City(name, cities, costs);
@@ -277,20 +279,30 @@ internal class Program
         return new Fraction(numerator, denominator);
     }
 
-    static string ReadRequiredText(string message)
+    static Point ReadPoint(string message)
     {
-        string text;
+        Console.WriteLine(message);
+
+        double x = ReadNumber("X");
+        double y = ReadNumber("Y");
+
+        return new Point(x, y);
+    }
+
+    static double ReadNumber(string message)
+    {
+        double number;
 
         Console.Write(message + ": ");
-        text = Console.ReadLine();
 
-        while (string.IsNullOrWhiteSpace(text))
+        while (!double.TryParse(
+            Console.ReadLine(),
+            out number))
         {
-            Console.Write("Поле не должно быть пустым: ");
-            text = Console.ReadLine();
+            Console.Write("Ошибка! Введите число: ");
         }
 
-        return text;
+        return number;
     }
 
     static int ReadInteger(string message, int min, int max)
@@ -307,5 +319,21 @@ internal class Program
         }
 
         return number;
+    }
+
+    static string ReadRequiredText(string message)
+    {
+        string text;
+
+        Console.Write(message + ": ");
+        text = Console.ReadLine();
+
+        while (string.IsNullOrWhiteSpace(text))
+        {
+            Console.Write("Поле не должно быть пустым: ");
+            text = Console.ReadLine();
+        }
+
+        return text;
     }
 }
