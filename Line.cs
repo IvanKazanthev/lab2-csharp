@@ -42,7 +42,6 @@ internal class Line
 
     public override string ToString()
     {
-        return "Линия от " + Start +
-            " до " + End;
+        return "Линия от " + Start + " до " + End;
     }
 }
