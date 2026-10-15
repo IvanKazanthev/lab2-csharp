@@ -10,56 +10,6 @@ internal class Name
     private string _firstName;
     private string _patronymic;
 
-    public string Surname
-    {
-        get
-        {
-            return _surname;
-        }
-        set
-        {
-            _surname = value;
-        }
-    }
-
-    public string FirstName
-    {
-        get
-        {
-            return _firstName;
-        }
-        set
-        {
-            _firstName = value;
-        }
-    }
-
-    public string Patronymic
-    {
-        get
-        {
-            return _patronymic;
-        }
-        set
-        {
-            _patronymic = value;
-        }
-    }
-
-    public Name(string firstName)
-    {
-        _surname = "";
-        _firstName = firstName;
-        _patronymic = "";
-    }
-
-    public Name(string surname, string firstName)
-    {
-        _surname = surname;
-        _firstName = firstName;
-        _patronymic = "";
-    }
-
     public Name(
         string surname,
         string firstName,
