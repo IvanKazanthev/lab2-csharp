@@ -1,20 +1,23 @@
+// Задание 1.1. Точка.
+// Создать класс точки с координатами X и Y
+// и строковым представлением координат.
 
 namespace Lab2;
 
 internal class Point
 {
-    private double x;
-    private double y;
+    private double _x;
+    private double _y;
 
     public double X
     {
         get
         {
-            return x;
+            return _x;
         }
         set
         {
-            x = value;
+            _x = value;
         }
     }
 
@@ -22,22 +25,22 @@ internal class Point
     {
         get
         {
-            return y;
+            return _y;
         }
         set
         {
-            y = value;
+            _y = value;
         }
     }
 
     public Point(double x, double y)
     {
-        this.x = x;
-        this.y = y;
+        _x = x;
+        _y = y;
     }
 
     public override string ToString()
     {
-        return $"{{{X};{Y}}}";
+        return "{" + X + ";" + Y + "}";
     }
 }
