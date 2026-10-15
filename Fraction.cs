@@ -44,8 +44,8 @@ internal class Fraction
     public Fraction sum(Fraction other)
     {
         int numerator =
-            _numerator * other.Denominator +
-            other.Numerator * _denominator;
+            _numerator * other.Denominator
+            + other.Numerator * _denominator;
 
         int denominator =
             _denominator * other.Denominator;
@@ -56,8 +56,8 @@ internal class Fraction
     public Fraction minus(Fraction other)
     {
         int numerator =
-            _numerator * other.Denominator -
-            other.Numerator * _denominator;
+            _numerator * other.Denominator
+            - other.Numerator * _denominator;
 
         int denominator =
             _denominator * other.Denominator;
@@ -67,38 +67,30 @@ internal class Fraction
 
     public Fraction mult(Fraction other)
     {
-        int numerator =
-            _numerator * other.Numerator;
-
-        int denominator =
-            _denominator * other.Denominator;
+        int numerator = _numerator * other.Numerator;
+        int denominator = _denominator * other.Denominator;
 
         return new Fraction(numerator, denominator);
     }
 
     public Fraction div(Fraction other)
     {
-        int numerator =
-            _numerator * other.Denominator;
-
-        int denominator =
-            _denominator * other.Numerator;
+        int numerator = _numerator * other.Denominator;
+        int denominator = _denominator * other.Numerator;
 
         return new Fraction(numerator, denominator);
     }
 
     public Fraction sum(int number)
     {
-        int numerator =
-            _numerator + number * _denominator;
+        int numerator = _numerator + number * _denominator;
 
         return new Fraction(numerator, _denominator);
     }
 
     public Fraction minus(int number)
     {
-        int numerator =
-            _numerator - number * _denominator;
+        int numerator = _numerator - number * _denominator;
 
         return new Fraction(numerator, _denominator);
     }
