@@ -1,106 +1,77 @@
-
-using System;
-using System.Text;
+// Задание 3.3. Города.
+// Создать города и описать пути между ними,
+// указав города назначения и стоимость путей.
 
 namespace Lab2;
 
 internal class City
 {
-    private string name;
-    private City[] connectedCities;
-    private int[] costs;
+    private string _name;
+    private Path[] _paths;
 
     public string Name
     {
         get
         {
-            return name;
+            return _name;
         }
         set
         {
-            name = value
-                ?? throw new ArgumentNullException(nameof(value));
+            _name = value;
         }
     }
 
-    public City[] ConnectedCities
+    public Path[] Paths
     {
         get
         {
-            return connectedCities;
+            return _paths;
         }
-    }
-
-    public int[] Costs
-    {
-        get
+        set
         {
-            return costs;
+            _paths = value;
         }
     }
 
     public City(string name)
     {
-        this.name = name
-            ?? throw new ArgumentNullException(nameof(name));
-
-        connectedCities = new City[0];
-        costs = new int[0];
+        _name = name;
+        _paths = new Path[0];
     }
 
-    public City(string name, City[] connectedCities, int[] costs)
+    public City(string name, Path[] paths)
     {
-        this.name = name
-            ?? throw new ArgumentNullException(nameof(name));
-
-        this.connectedCities = new City[0];
-        this.costs = new int[0];
-
-        SetPaths(connectedCities, costs);
+        _name = name;
+        _paths = paths;
     }
 
-    public void SetPaths(City[] cities, int[] pathCosts)
+    public void AddPath(City city, int cost)
     {
-        if (cities == null || pathCosts == null)
+        Path[] newPaths = new Path[_paths.Length + 1];
+
+        for (int i = 0; i < _paths.Length; i++)
         {
-            throw new ArgumentNullException(
-                "Города и стоимости не должны быть null.");
+            newPaths[i] = _paths[i];
         }
 
-        if (cities.Length != pathCosts.Length)
-        {
-            throw new ArgumentException(
-                "Число городов и стоимостей должно совпадать.");
-        }
-
-        connectedCities = (City[])cities.Clone();
-        costs = (int[])pathCosts.Clone();
+        newPaths[_paths.Length] = new Path(city, cost);
+        _paths = newPaths;
     }
 
     public override string ToString()
     {
-        StringBuilder result = new StringBuilder();
-        result.Append(name);
-        result.Append(": ");
+        string result = _name + ": ";
 
-        if (connectedCities.Length == 0)
+        for (int i = 0; i < _paths.Length; i++)
         {
-            result.Append("нет связанных городов");
-            return result.ToString();
-        }
+            result += _paths[i].ToString();
 
-        for (int i = 0; i < connectedCities.Length; i++)
-        {
-            if (i > 0)
+            if (i < _paths.Length - 1)
             {
-                result.Append(", ");
+                result += ", ";
             }
-
-            result.Append(connectedCities[i].Name);
-            result.Append(":");
-            result.Append(costs[i]);
         }
 
-        return result.ToString();
+        return result;
     }
 }
