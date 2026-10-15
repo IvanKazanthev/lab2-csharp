@@ -54,21 +54,14 @@ internal class Program
 
     static string ReadOptionalText(string message)
     {
-        string text;
-
         Console.Write(message + ": ");
-        text = Console.ReadLine();
+        string text = Console.ReadLine() ?? "";
 
         while (!string.IsNullOrWhiteSpace(text)
             && !IsValidName(text))
         {
             Console.Write("Введите только буквы: ");
-            text = Console.ReadLine();
-        }
-
-        if (text == null)
-        {
-            return "";
+            text = Console.ReadLine() ?? "";
         }
 
         return text;
@@ -76,9 +69,9 @@ internal class Program
 
     static bool IsValidName(string text)
     {
-        for (int i = 0; i < text.Length; i++)
+        foreach (char c in text)
         {
-            if (!char.IsLetter(text[i]) && text[i] != '-')
+            if (!char.IsLetter(c) && c != '-')
             {
                 return false;
             }
@@ -138,11 +131,11 @@ internal class Program
         City e = new City("E");
         City f = new City("F");
 
+        a.AddPath(b, 5);
         a.AddPath(f, 1);
         a.AddPath(d, 6);
 
         b.AddPath(a, 5);
-        b.AddPath(f, 1);
         b.AddPath(c, 3);
 
         c.AddPath(b, 3);
@@ -153,9 +146,7 @@ internal class Program
         d.AddPath(e, 2);
 
         e.AddPath(f, 2);
-        e.AddPath(d, 2);
 
-        f.AddPath(a, 1);
         f.AddPath(b, 1);
         f.AddPath(e, 2);
 
@@ -172,7 +163,7 @@ internal class Program
     {
         Console.WriteLine("ЗАДАНИЕ 4.8 — СОЗДАНИЕ ГОРОДА");
 
-        string name = ReadRequiredText("Название города");
+        string name = ReadCityName();
         int count = ReadInteger("Количество путей", 0, 5);
 
         City[] cities = new City[count];
@@ -180,11 +171,13 @@ internal class Program
 
         for (int i = 0; i < count; i++)
         {
-            string destination =
-                ReadRequiredText("Город назначения");
+            Console.WriteLine("Путь " + (i + 1));
 
+            string destination = ReadCityName();
             cities[i] = new City(destination);
-            costs[i] = ReadInteger("Стоимость пути", 1, 1000000);
+
+            costs[i] = ReadInteger(
+                "Стоимость пути", 1, 1000000);
         }
 
         City city = new City(name, cities, costs);
@@ -194,6 +187,26 @@ internal class Program
         Console.WriteLine();
     }
 
+    static string ReadCityName()
+    {
+        while (true)
+        {
+            Console.Write("Название города (A-F): ");
+            string name = Console.ReadLine() ?? "";
+
+            if (name.Length == 1
+                && name[0] >= 'A'
+                && name[0] <= 'F')
+            {
+                return name;
+            }
+
+            Console.WriteLine(
+                "Ошибка! Введите одну заглавную букву A-F.");
+        }
+    }
+
+    
     static void ShowFractions()
     {
         Console.WriteLine("ЗАДАНИЕ 5.5 — ДРОБИ");
@@ -218,7 +231,8 @@ internal class Program
         }
         else
         {
-            Console.WriteLine("Деление на нулевую дробь нельзя.");
+            Console.WriteLine(
+                "Деление на нулевую дробь нельзя.");
         }
 
         int number = ReadInteger(
@@ -270,7 +284,8 @@ internal class Program
 
         while (denominator == 0)
         {
-            Console.WriteLine("Знаменатель не может быть нулём.");
+            Console.WriteLine(
+                "Знаменатель не может быть нулём.");
 
             denominator = ReadInteger(
                 "Знаменатель", -1000000, 1000000);
@@ -296,8 +311,7 @@ internal class Program
         Console.Write(message + ": ");
 
         while (!double.TryParse(
-            Console.ReadLine(),
-            out number))
+            Console.ReadLine(), out number))
         {
             Console.Write("Ошибка! Введите число: ");
         }
@@ -311,8 +325,10 @@ internal class Program
 
         Console.Write(message + ": ");
 
-        while (!int.TryParse(Console.ReadLine(), out number)
-            || number < min || number > max)
+        while (!int.TryParse(
+            Console.ReadLine(), out number)
+            || number < min
+            || number > max)
         {
             Console.Write(
                 "Введите число от " + min + " до " + max + ": ");
@@ -323,15 +339,13 @@ internal class Program
 
     static string ReadRequiredText(string message)
     {
-        string text;
-
         Console.Write(message + ": ");
-        text = Console.ReadLine();
+        string text = Console.ReadLine() ?? "";
 
         while (string.IsNullOrWhiteSpace(text))
         {
             Console.Write("Поле не должно быть пустым: ");
-            text = Console.ReadLine();
+            text = Console.ReadLine() ?? "";
         }
 
         return text;
