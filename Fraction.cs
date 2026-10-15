@@ -1,23 +1,25 @@
-
-using System;
+// Задание 5.5. Дроби.
+// Создать класс дроби с числителем и знаменателем.
+// Реализовать сложение, вычитание, умножение
+// и деление дробей и целых чисел без изменения
+// исходных дробей.
 
 namespace Lab2;
 
 internal class Fraction
 {
-    private int numerator;
-    private int denominator;
+    private int _numerator;
+    private int _denominator;
 
     public int Numerator
     {
         get
         {
-            return numerator;
+            return _numerator;
         }
         set
         {
-            numerator = value;
-            Simplify();
+            _numerator = value;
         }
     }
 
@@ -25,123 +27,98 @@ internal class Fraction
     {
         get
         {
-            return denominator;
+            return _denominator;
         }
         set
         {
-            if (value == 0)
-            {
-                throw new ArgumentException(
-                    "Знаменатель не может быть равен нулю.");
-            }
-
-            denominator = value;
-            Simplify();
+            _denominator = value;
         }
     }
 
     public Fraction(int numerator, int denominator)
     {
-        if (denominator == 0)
-        {
-            throw new ArgumentException(
-                "Знаменатель не может быть равен нулю.");
-        }
-
-        this.numerator = numerator;
-        this.denominator = denominator;
-        Simplify();
+        _numerator = numerator;
+        _denominator = denominator;
     }
 
     public Fraction sum(Fraction other)
     {
-        return new Fraction(
-            numerator * other.denominator
-                + other.numerator * denominator,
-            denominator * other.denominator);
-    }
+        int numerator =
+            _numerator * other.Denominator +
+            other.Numerator * _denominator;
 
-    public Fraction sum(int number)
-    {
-        return sum(new Fraction(number, 1));
+        int denominator =
+            _denominator * other.Denominator;
+
+        return new Fraction(numerator, denominator);
     }
 
     public Fraction minus(Fraction other)
     {
-        return new Fraction(
-            numerator * other.denominator
-                - other.numerator * denominator,
-            denominator * other.denominator);
-    }
+        int numerator =
+            _numerator * other.Denominator -
+            other.Numerator * _denominator;
 
-    public Fraction minus(int number)
-    {
-        return minus(new Fraction(number, 1));
+        int denominator =
+            _denominator * other.Denominator;
+
+        return new Fraction(numerator, denominator);
     }
 
     public Fraction mult(Fraction other)
     {
-        return new Fraction(
-            numerator * other.numerator,
-            denominator * other.denominator);
-    }
+        int numerator =
+            _numerator * other.Numerator;
 
-    public Fraction mult(int number)
-    {
-        return mult(new Fraction(number, 1));
+        int denominator =
+            _denominator * other.Denominator;
+
+        return new Fraction(numerator, denominator);
     }
 
     public Fraction div(Fraction other)
     {
-        if (other.numerator == 0)
-        {
-            throw new DivideByZeroException(
-                "Нельзя делить на нулевую дробь.");
-        }
+        int numerator =
+            _numerator * other.Denominator;
 
-        return new Fraction(
-            numerator * other.denominator,
-            denominator * other.numerator);
+        int denominator =
+            _denominator * other.Numerator;
+
+        return new Fraction(numerator, denominator);
+    }
+
+    public Fraction sum(int number)
+    {
+        int numerator =
+            _numerator + number * _denominator;
+
+        return new Fraction(numerator, _denominator);
+    }
+
+    public Fraction minus(int number)
+    {
+        int numerator =
+            _numerator - number * _denominator;
+
+        return new Fraction(numerator, _denominator);
+    }
+
+    public Fraction mult(int number)
+    {
+        int numerator = _numerator * number;
+
+        return new Fraction(numerator, _denominator);
     }
 
     public Fraction div(int number)
     {
-        if (number == 0)
-        {
-            throw new DivideByZeroException(
-                "Нельзя делить на ноль.");
-        }
+        int denominator = _denominator * number;
 
-        return div(new Fraction(number, 1));
-    }
-
-    private void Simplify()
-    {
-        if (denominator < 0)
-        {
-            numerator = -numerator;
-            denominator = -denominator;
-        }
-
-        int a = Math.Abs(numerator);
-        int b = denominator;
-
-        while (b != 0)
-        {
-            int remainder = a % b;
-            a = b;
-            b = remainder;
-        }
-
-        if (a > 1)
-        {
-            numerator /= a;
-            denominator /= a;
-        }
+        return new Fraction(_numerator, denominator);
     }
 
     public override string ToString()
     {
-        return $"{numerator}/{denominator}";
+        return _numerator + "/" + _denominator;
     }
 }
